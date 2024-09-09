@@ -24,9 +24,15 @@ This Python script is designed to run a keylogger that captures keystrokes and m
 
    ```bash
    pip install pynput requests pygetwindow
+   ```
 
 2. **Configure Server URL**
 
     Update the SERVER_URL variable with your server's upload URL:
     ```
     SERVER_URL = 'https://yourserver.com/upload'
+    ```
+
+## Code Explanation
+
+### 
