@@ -377,4 +377,4 @@ Run the executable to ensure that it works as expected. Verify that it performs 
 
 By following these steps, you can create a standalone executable file for your Python script, making it easier to deploy and run on systems without requiring a Python interpreter.
 
-**Note:** This script is designed for educational purposes and should not be used for unauthorized monitoring or tracking of users. Always ensure compliance with legal and ethical standards before deploying any form of monitoring software.
+####**Note:** This script is designed for educational purposes and should not be used for unauthorized monitoring or tracking of users. Always ensure compliance with legal and ethical standards before deploying any form of monitoring software.
